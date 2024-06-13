@@ -2,12 +2,14 @@ import { Box } from "@mui/material"
 import ResponsiveAppBar from "./ResponsiveAppbar"
 import React from "react"
 import CallToAction from "./CallToAction"
+import ClickableDivs from "./Buttons"
 
 function LandingPage() {
   return (
     <Box>
       <ResponsiveAppBar />
       <CallToAction />
+      <ClickableDivs />
     </Box>
   )
 }
