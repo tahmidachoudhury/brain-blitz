@@ -44,7 +44,7 @@ const ClickableDivs = () => {
       <Box sx={commonStyles}>
         <CalculateIcon
           sx={{
-            animation: `${spin} 2s infinite ease-in-out`,
+            // animation: `${spin} 2s infinite ease-in-out`,
             fontSize: "5rem",
           }}
         />
@@ -53,7 +53,7 @@ const ClickableDivs = () => {
       <Box sx={commonStyles}>
         <BiotechIcon
           sx={{
-            animation: `${spin} 2s infinite ease-in-out`,
+            // animation: `${spin} 2s infinite ease-in-out`,
             fontSize: "5rem",
           }}
         />
