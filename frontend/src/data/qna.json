@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "title": "What type of cell activity occurs in the meristem regions of plants?",
+    "answer": "Mitosis",
+    "choices": [
+      "Mitosis",
+      "Storage of sugar",
+      "Increased water uptake of cells",
+      "Photosynthesis",
+      "Secondary growth"
+    ],
+    "hint": null
+  },
+  {
+    "id": 2,
+    "title": "What is the primary purpose of mitosis in multicellular organisms?",
+    "answer": "Growth and repair",
+    "choices": [
+      "Growth and repair",
+      "Production of gametes",
+      "Removal of waste",
+      "Photosynthesis",
+      "Nutrient absorption"
+    ],
+    "hint": "This process allows organisms to increase their cell numbers."
+  },
+  {
+    "id": 3,
+    "title": "During which phase of the cell cycle does DNA replication occur?",
+    "answer": "S phase",
+    "choices": ["G1 phase", "S phase", "G2 phase", "M phase", "C phase"],
+    "hint": "This phase is part of interphase and follows the G1 phase."
+  },
+  {
+    "id": 4,
+    "title": "Which structure is responsible for organizing the mitotic spindle?",
+    "answer": "Centrosome",
+    "choices": [
+      "Nucleus",
+      "Centrosome",
+      "Mitochondrion",
+      "Ribosome",
+      "Golgi apparatus"
+    ],
+    "hint": "This organelle contains the centrioles in animal cells."
+  },
+  {
+    "id": 5,
+    "title": "What is the role of spindle fibers during mitosis?",
+    "answer": "They separate sister chromatids.",
+    "choices": [
+      "They replicate DNA.",
+      "They form the cell membrane.",
+      "They separate sister chromatids.",
+      "They produce ATP.",
+      "They conduct photosynthesis."
+    ],
+    "hint": "These fibers attach to chromatids and pull them apart."
+  },
+  {
+    "id": 6,
+    "title": "Which phase of mitosis is characterized by the alignment of chromosomes along the metaphase plate?",
+    "answer": "Metaphase",
+    "choices": [
+      "Prophase",
+      "Metaphase",
+      "Anaphase",
+      "Telophase",
+      "Cytokinesis"
+    ],
+    "hint": "This phase follows prophase."
+  },
+  {
+    "id": 7,
+    "title": "What occurs during anaphase of mitosis?",
+    "answer": "Sister chromatids are pulled to opposite poles.",
+    "choices": [
+      "Nuclear envelope reforms.",
+      "Chromosomes condense.",
+      "Sister chromatids are pulled to opposite poles.",
+      "The cell divides.",
+      "Spindle fibers disappear."
+    ],
+    "hint": "Chromatids are separated during this phase."
+  },
+  {
+    "id": 8,
+    "title": "Which type of cells are produced by mitosis?",
+    "answer": "Genetically identical daughter cells",
+    "choices": [
+      "Genetically identical daughter cells",
+      "Genetically unique daughter cells",
+      "Haploid gametes",
+      "Stem cells",
+      "Prokaryotic cells"
+    ],
+    "hint": "The daughter cells have the same genetic material as the parent cell."
+  },
+  {
+    "id": 9,
+    "title": "In which part of the plant does mitosis primarily occur?",
+    "answer": "Meristem",
+    "choices": ["Leaf", "Stem", "Root", "Flower", "Meristem"],
+    "hint": "This region is where growth occurs in plants."
+  },
+  {
+    "id": 10,
+    "title": "What is cytokinesis?",
+    "answer": "Division of the cytoplasm",
+    "choices": [
+      "Replication of DNA",
+      "Division of the nucleus",
+      "Division of the cytoplasm",
+      "Formation of spindle fibers",
+      "Condensation of chromosomes"
+    ],
+    "hint": "This process follows mitosis and completes cell division."
+  },
+  {
+    "id": 11,
+    "title": "What phase follows telophase in the cell cycle?",
+    "answer": "Cytokinesis",
+    "choices": [
+      "Prophase",
+      "Interphase",
+      "Metaphase",
+      "Cytokinesis",
+      "Anaphase"
+    ],
+    "hint": "This is the final step in cell division."
+  },
+  {
+    "id": 12,
+    "title": "Which checkpoint ensures that all chromosomes are properly aligned before mitosis proceeds?",
+    "answer": "Metaphase checkpoint",
+    "choices": [
+      "G1 checkpoint",
+      "G2 checkpoint",
+      "Metaphase checkpoint",
+      "S phase checkpoint",
+      "Anaphase checkpoint"
+    ],
+    "hint": "This checkpoint occurs during metaphase."
+  }
+]

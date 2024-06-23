@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material"
 import React from "react"
 import { styled } from "@mui/system"
+import qna from "../../data/qna.json"
 
 const Item = styled(Paper)({
   height: 60,
@@ -12,55 +13,47 @@ const Item = styled(Paper)({
 
 export default function MCQQuestion() {
   return (
-    <Box display="flex" justifyContent="center">
-      <Paper
-        square={false}
-        sx={{
-          pl: 6,
-          pr: 6,
-          pt: 3,
-          pb: 3,
-          minWidth: { xs: 0.8, sm: 0.6, md: 0.7, lg: 0.8 },
-        }}
-      >
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography>Term</Typography>
-          <Typography>10 of 20</Typography>
-        </Box>
-        <Box sx={{ pt: "1rem" }}>
-          <Typography>
-            What type of cell activity occurs in the meristem regions of plants?
-          </Typography>
-        </Box>
-        <Box sx={{ pt: "3rem" }}>
-          <Typography>Choose matching definition</Typography>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { md: "1fr 1fr" },
-              gap: 2,
-              pt: 2,
-            }}
-          >
-            <Item item xs={6}>
-              Mitosis
-            </Item>
-            <Item item xs={6}>
-              Photosynthesis
-            </Item>
-            <Item item xs={6}>
-              Storage of sugar
-            </Item>
-            <Item item xs={6}>
-              Secondary growth
-            </Item>
-            <Item item xs={6}>
-              Increased water uptake of cells
-            </Item>
+    <Box display="flex" flexDirection="column" alignItems="center">
+      {qna.map((item) => (
+        <Paper
+          elevation={3}
+          square={false}
+          sx={{
+            px: 4,
+            py: 2,
+            minWidth: { xs: 0.8, sm: 0.6, md: 0.7, lg: 0.8 },
+            my: 4,
+          }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography>Term</Typography>
+            <Typography>10 of 20</Typography>
           </Box>
-        </Box>
-        <Button>Don't know?</Button>
-      </Paper>
+          <Box sx={{ pt: "1rem" }}>
+            <Typography>{item.title}</Typography>
+          </Box>
+          <Box sx={{ pt: "3rem" }}>
+            <Typography>Choose matching definition</Typography>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: { md: "1fr 1fr" },
+                gap: 2,
+                pt: 2,
+              }}
+            >
+              {item.choices.map((choice) => (
+                <Item item xs={6}>
+                  {choice}
+                </Item>
+              ))}
+            </Box>
+          </Box>
+          <Box sx={{ textAlign: "center", mt: 2 }}>
+            <Button>Don't know?</Button>
+          </Box>
+        </Paper>
+      ))}
     </Box>
   )
 }
