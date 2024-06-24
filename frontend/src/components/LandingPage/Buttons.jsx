@@ -14,8 +14,16 @@ const ClickableDivs = () => {
   }
   to {
     transform: rotate(360deg);
+    }
+    `
+
+  const animationStyle = {
+    transition: "all 0.3s ease",
+    "&:hover": {
+      animation: `${spin} 0.5s ease-in-out`,
+    },
+    fontSize: "5rem",
   }
-`
 
   const commonStyles = {
     display: "flex",
@@ -24,39 +32,30 @@ const ClickableDivs = () => {
     width: "200px", // Set the desired width
     padding: "8px",
     margin: "8px",
-    fontSize: "20px", // Set the desired font size
+    fontSize: "20px",
     cursor: "pointer",
     border: "1px solid transparent",
     borderRadius: "4px",
     textAlign: "center",
     transition: "all 0.3s ease",
     "&:hover": {
-      backgroundColor: "#f0f0f0", // Change to the desired hover color
-      borderColor: "#3f51b5", // Change to the desired hover border color
+      backgroundColor: "#f0f0f0",
+      animationStyle,
+      borderColor: "#3f51b5",
     },
     "&:active": {
-      backgroundColor: "#e0e0e0", // Change to the desired active color
+      backgroundColor: "#e0e0e0",
     },
   }
 
   return (
     <Box display="flex" justifyContent="center">
       <Box sx={commonStyles}>
-        <CalculateIcon
-          sx={{
-            // animation: `${spin} 2s infinite ease-in-out`,
-            fontSize: "5rem",
-          }}
-        />
+        <CalculateIcon sx={animationStyle} />
         GCSE Maths
       </Box>
       <Box sx={commonStyles}>
-        <BiotechIcon
-          sx={{
-            // animation: `${spin} 2s infinite ease-in-out`,
-            fontSize: "5rem",
-          }}
-        />
+        <BiotechIcon sx={animationStyle} />
         GCSE Science
       </Box>
     </Box>
