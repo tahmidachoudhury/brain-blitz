@@ -1,5 +1,4 @@
-import { Box, Button, Typography } from "@mui/material"
-import React from "react"
+import { Box, Button, Typography } from "@mui/material";
 
 const CallToAction = () => {
   return (
@@ -16,6 +15,7 @@ const CallToAction = () => {
         sm: "row",
       }}
       py="1rem"
+      sx={{ background: "rgb(217, 221, 255)" }}
     >
       <Box
         width={{
@@ -23,15 +23,19 @@ const CallToAction = () => {
           xs: "100%",
         }}
       >
-        <Typography variant="h4" mb="3rem" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h4" my="3rem" sx={{ fontWeight: "bold" }}>
           Fight and Win!
         </Typography>
         <Typography mb="3rem" variant="h5">
           A new innovative way of learning mathematics. Sign up to join the army
           of students battling to become the best!
         </Typography>
-        <Button sx={{ mb: "3rem", py: "1.5rem" }} variant="contained">
-          <Typography variant="h6">Sign up for free</Typography>
+        <Button
+          sx={{ mb: "3rem", py: "0.75rem" }}
+          variant="contained"
+          color="primary"
+        >
+          Sign up for free
         </Button>
         <Typography variant="body1">Do you have what it takes?</Typography>
       </Box>
@@ -48,7 +52,7 @@ const CallToAction = () => {
         }}
       />
     </Box>
-  )
-}
+  );
+};
 
-export default CallToAction
+export default CallToAction;
