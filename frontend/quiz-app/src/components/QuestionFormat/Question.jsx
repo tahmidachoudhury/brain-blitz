@@ -3,7 +3,7 @@ import React from "react"
 import { styled } from "@mui/system"
 import qna from "../../data/qna.json"
 
-const Item = styled(Paper)({
+const Item = styled(Button)({
   height: 60,
   border: "1px solid black",
   borderRadius: "8px",
@@ -23,6 +23,7 @@ export default function MCQQuestion() {
             py: 2,
             minWidth: { xs: 0.8, sm: 0.6, md: 0.7, lg: 0.8 },
             my: 4,
+            background:"rgb(233, 234, 251)"
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -50,7 +51,7 @@ export default function MCQQuestion() {
             </Box>
           </Box>
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button>Don't know?</Button>
+            <Button color="secondary">Don't know?</Button>
           </Box>
         </Paper>
       ))}
