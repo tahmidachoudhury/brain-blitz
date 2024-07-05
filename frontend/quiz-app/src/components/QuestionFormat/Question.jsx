@@ -1,15 +1,20 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import React from "react";
-import { styled } from "@mui/system";
-import qna from "../../data/qna.json";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material"
+import React from "react"
+import { styled } from "@mui/system"
+import qna from "../../data/qna.json"
 
 const Item = styled(Button)({
   height: 60,
-  border: "1px solid black",
   borderRadius: "8px",
   lineHeight: "60px",
   paddingLeft: "10px",
-});
+  backgroundColor: "#5f6487",
+  color: "white",
+  textTransform: "none",
+  "&:hover": {
+    backgroundColor: "#6a6f96",
+  },
+})
 
 export default function MCQQuestion() {
   return (
@@ -44,7 +49,7 @@ export default function MCQQuestion() {
                 pt: 2,
               }}
             >
-              {item.choices.map((choice,index) => (
+              {item.choices.map((choice, index) => (
                 <Item item xs={6} key={index}>
                   {choice}
                 </Item>
@@ -57,5 +62,5 @@ export default function MCQQuestion() {
         </Paper>
       ))}
     </Box>
-  );
+  )
 }
