@@ -44,15 +44,15 @@ export default function MCQQuestion() {
                 pt: 2,
               }}
             >
-              {item.choices.map((choice) => (
-                <Item item xs={6}>
+              {item.choices.map((choice,index) => (
+                <Item item xs={6} key={index}>
                   {choice}
                 </Item>
               ))}
             </Box>
           </Box>
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button color="secondary">Don't know?</Button>
+            <Button>Don't know?</Button>
           </Box>
         </Paper>
       ))}

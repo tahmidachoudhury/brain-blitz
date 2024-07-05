@@ -5,17 +5,17 @@ const theme = createTheme({
       main: "rgb(89, 97, 175)",
     },
     secondary: {
-      main: "rgb(153, 159, 222)",
+      main: "rgb(241, 134, 208)",
     },
     accent: {
-      main: " rgb(105, 116, 226)",
+      main: "rgb(93, 107, 232)",
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '10%', // Customize the border radius here
+          borderRadius: "10%", // Customize the border radius here
         },
       },
     },

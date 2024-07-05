@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import SearchBar from "./LandingPage/SearchBar";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -36,10 +37,13 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{background:"#F4F7F3"}}>
+    <AppBar position="static" sx={{ background: "#F4F7F3" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{color:"#090B08"}}>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} color="primary" />
+        <Toolbar disableGutters sx={{ color: "#090B08" }}>
+          <AdbIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            color="primary"
+          />
           <Typography
             variant="h6"
             noWrap
@@ -124,7 +128,9 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-
+          <Box mx="25%">
+            <SearchBar />
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

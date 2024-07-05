@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-
+import q from "../../assets/q.png";
 const CallToAction = () => {
   return (
     <Box
@@ -14,8 +14,8 @@ const CallToAction = () => {
         xs: "column",
         sm: "row",
       }}
-      py="1rem"
-      sx={{ background: "rgb(217, 221, 255)" }}
+      py="5rem"
+      sx={{ background: "rgb(255, 226, 246)" }}
     >
       <Box
         width={{
@@ -39,18 +39,31 @@ const CallToAction = () => {
         </Button>
         <Typography variant="body1">Do you have what it takes?</Typography>
       </Box>
-      <Box
-        component="img"
-        src="https://images.pexels.com/photos/301926/pexels-photo-301926.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        sx={{
-          height: "30rem",
-          width: "40rem",
-          maxHeight: { xs: 233, md: 300 },
-          maxWidth: { xs: 350, md: 500 },
-          objectFit: "cover",
-          borderRadius: "2rem",
-        }}
-      />
+      <Box display="flex">
+        <Box
+          component="img"
+          src={q}
+          sx={{
+            height: "90rem",
+            mx: "2rem",
+            maxHeight: { xs: 233, md: 300 },
+            maxWidth: { xs: 350, md: 500 },
+            objectFit: "scale-down",
+            borderRadius: "2rem",
+          }}
+        />
+        <Box
+          component="img"
+          src={q}
+          sx={{
+            height: "40rem",
+            maxHeight: { xs: 233, md: 300 },
+            maxWidth: { xs: 350, md: 500 },
+            objectFit: "scale-down",
+            borderRadius: "2rem",
+          }}
+        />
+      </Box>
     </Box>
   );
 };
