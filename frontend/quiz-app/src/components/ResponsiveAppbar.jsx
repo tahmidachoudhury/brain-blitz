@@ -36,7 +36,6 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const navigate = useNavigate()
   return (
     <AppBar position="static" sx={{ background: "#F4F7F3" }}>
       <Container maxWidth="xl">
