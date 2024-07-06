@@ -34,7 +34,9 @@ export default function MCQQuestion() {
         >
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography>Term</Typography>
-            <Typography>{index + 1} of 20</Typography>
+            <Typography>
+              {index + 1} of {qna.length}
+            </Typography>
           </Box>
           <Box sx={{ pt: "1rem" }}>
             <Typography>{item.title}</Typography>
