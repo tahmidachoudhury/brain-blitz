@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material"
 const theme = createTheme({
   palette: {
     primary: {
@@ -15,11 +15,18 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
+          "&.MuiButton-success": {
+            backgroundColor: "#28a745",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "#218838",
+            },
+          },
           borderRadius: "10%", // Customize the border radius here
         },
       },
     },
   },
-});
+})
 
-export default theme;
+export default theme

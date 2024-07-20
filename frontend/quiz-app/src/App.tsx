@@ -1,8 +1,8 @@
-import "./App.css";
-import LandingPage from "./components/LandingPage/index";
-import MCQQuestion from "./components/QuestionFormat/Question";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ResponsiveAppBar from "./components/ResponsiveAppbar";
+import "./App.css"
+import LandingPage from "./components/LandingPage/index"
+import MCQQuestion from "./components/QuestionFormat/Questions"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import ResponsiveAppBar from "./components/ResponsiveAppbar"
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/q" element={<MCQQuestion />} />
       </Routes>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

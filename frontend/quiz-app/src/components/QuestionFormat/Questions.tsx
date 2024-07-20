@@ -4,7 +4,6 @@ import { styled } from "@mui/system"
 import qna from "../../data/qna.json"
 import Pagination from "@mui/material/Pagination"
 import Stack from "@mui/material/Stack"
-import theme from "../../theme"
 
 const Item = styled(Button)({
   height: 60,
@@ -23,7 +22,18 @@ export default function MCQQuestion() {
   const [currentQuestion, setCurrentQuestion] = React.useState(0)
   const [color, setColor] = React.useState("primary")
   const [correct, setCorrect] = React.useState(false)
-  const [selectedAnswer, setSelectedAnswer] = React.useState(null)
+
+  const handleChange = (event, value) => {
+    setCurrentQuestion(value - 1)
+    setColor("primary")
+    setCorrect(false)
+  }
+  const handleClick = (e) => {
+    if (e.target.value === qna[currentQuestion].answer) {
+      setCorrect(true)
+      setColor("success")
+    }
+  }
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Paper
@@ -57,20 +67,15 @@ export default function MCQQuestion() {
             }}
           >
             {qna[currentQuestion].choices.map((choice, index) => (
-              <Button
+              <Item
                 item
                 xs={6}
                 key={index}
                 value={choice}
-                color={
-                  selectedAnswer === qna[currentQuestion].answer
-                    ? "success"
-                    : "primary"
-                }
-                onClick={(e) => setSelectedAnswer(e.target.value)}
+                onClick={handleClick}
               >
                 {choice}
-              </Button>
+              </Item>
             ))}
           </Box>
         </Box>
@@ -78,6 +83,14 @@ export default function MCQQuestion() {
           <Button>Don't know?</Button>
         </Box>
       </Paper>
+      <Stack spacing={2}>
+        <Pagination
+          count={qna.length}
+          variant="outlined"
+          color="primary"
+          onChange={handleChange}
+        />
+      </Stack>
     </Box>
   )
 }
