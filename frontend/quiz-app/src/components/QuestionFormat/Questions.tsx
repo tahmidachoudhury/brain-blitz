@@ -21,16 +21,15 @@ const Item = styled(Button)({
 export default function MCQQuestion() {
   const [currentQuestion, setCurrentQuestion] = React.useState(0)
   const [color, setColor] = React.useState("primary")
-  const [correct, setCorrect] = React.useState(false)
+  const [answer, setAnswer] = React.useState(qna[0].answer)
 
   const handleChange = (event, value) => {
     setCurrentQuestion(value - 1)
     setColor("primary")
-    setCorrect(false)
+    setAnswer(qna[currentQuestion + 1].answer)
   }
   const handleClick = (e) => {
-    if (e.target.value === qna[currentQuestion].answer) {
-      setCorrect(true)
+    if (e.target.value === answer) {
       setColor("success")
     }
   }
@@ -67,15 +66,16 @@ export default function MCQQuestion() {
             }}
           >
             {qna[currentQuestion].choices.map((choice, index) => (
-              <Item
+              <Button
                 item
                 xs={6}
                 key={index}
                 value={choice}
                 onClick={handleClick}
+                color={choice === answer ? "success" : "primary"}
               >
                 {choice}
-              </Item>
+              </Button>
             ))}
           </Box>
         </Box>
