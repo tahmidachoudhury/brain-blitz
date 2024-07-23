@@ -59,7 +59,7 @@ export default function MCQQuestion() {
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography>Term</Typography>
-          <Typography>{score}</Typography>
+          <Typography>Current Score: {score}</Typography>
           <Typography>
             {currentQuestion + 1} of {qna.length}
           </Typography>
