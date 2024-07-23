@@ -1,9 +1,9 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material"
-import React from "react"
-import { styled } from "@mui/system"
-import qna from "../../data/qna.json"
-import Pagination from "@mui/material/Pagination"
-import Stack from "@mui/material/Stack"
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import React from "react";
+import { styled } from "@mui/system";
+import qna from "../../data/qna.json";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const Item = styled(Button)({
   height: 60,
@@ -16,23 +16,34 @@ const Item = styled(Button)({
   "&:hover": {
     backgroundColor: "#6a6f96",
   },
-})
+});
 
 export default function MCQQuestion() {
-  const [currentQuestion, setCurrentQuestion] = React.useState(0)
-  const [color, setColor] = React.useState("primary")
-  const [answer, setAnswer] = React.useState(qna[0].answer)
+  const [currentQuestion, setCurrentQuestion] = React.useState(0);
+  const [selectedAnswer, setSelectedAnswer] = React.useState("");
+  const [isAnswered, setIsAnswered] = React.useState(false);
+  const [score, setScore] = React.useState(0);
 
   const handleChange = (event, value) => {
-    setCurrentQuestion(value - 1)
-    setColor("primary")
-    setAnswer(qna[currentQuestion + 1].answer)
-  }
-  const handleClick = (e) => {
-    if (e.target.value === answer) {
-      setColor("success")
+    setCurrentQuestion(value - 1);
+    setSelectedAnswer("");
+    setIsAnswered(false);
+  };
+
+  const handleClick = (choice) => {
+    if (!isAnswered) {
+      setSelectedAnswer(choice);
+      setIsAnswered(true);
+      if (choice === qna[currentQuestion].answer) {
+        setScore((score) => score + 1);
+      }
     }
-  }
+  };
+  React.useEffect(() => {
+    setSelectedAnswer("");
+    setIsAnswered(false);
+    console.log(score);
+  }, [currentQuestion]);
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Paper
@@ -48,6 +59,7 @@ export default function MCQQuestion() {
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography>Term</Typography>
+          <Typography>{score}</Typography>
           <Typography>
             {currentQuestion + 1} of {qna.length}
           </Typography>
@@ -67,12 +79,19 @@ export default function MCQQuestion() {
           >
             {qna[currentQuestion].choices.map((choice, index) => (
               <Button
-                item
                 xs={6}
                 key={index}
                 value={choice}
-                onClick={handleClick}
-                color={choice === answer ? "success" : "primary"}
+                onClick={() => handleClick(choice)}
+                color={
+                  !isAnswered
+                    ? "primary"
+                    : choice === qna[currentQuestion].answer
+                    ? "success"
+                    : choice === selectedAnswer
+                    ? "error"
+                    : "primary"
+                }
               >
                 {choice}
               </Button>
@@ -92,5 +111,5 @@ export default function MCQQuestion() {
         />
       </Stack>
     </Box>
-  )
+  );
 }
