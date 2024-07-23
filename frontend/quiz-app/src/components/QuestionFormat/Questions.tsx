@@ -23,6 +23,7 @@ export default function MCQQuestion() {
   const [selectedAnswer, setSelectedAnswer] = React.useState("");
   const [isAnswered, setIsAnswered] = React.useState(false);
   const [score, setScore] = React.useState(0);
+  const [answerCount, setAnswerCount] = React.useState(0);
 
   const handleChange = (event, value) => {
     setCurrentQuestion(value - 1);
@@ -34,8 +35,12 @@ export default function MCQQuestion() {
     if (!isAnswered) {
       setSelectedAnswer(choice);
       setIsAnswered(true);
+      setAnswerCount((prevCount) => prevCount + 1);
       if (choice === qna[currentQuestion].answer) {
         setScore((score) => score + 1);
+      }
+      if (answerCount + 1 === qna.length) {
+        console.log("done");
       }
     }
   };
