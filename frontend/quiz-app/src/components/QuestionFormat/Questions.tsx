@@ -21,34 +21,58 @@ const Item = styled(Button)({
 export default function MCQQuestion() {
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const [selectedAnswer, setSelectedAnswer] = React.useState("");
-  const [isAnswered, setIsAnswered] = React.useState(false);
   const [score, setScore] = React.useState(0);
-  const [answerCount, setAnswerCount] = React.useState(0);
+  const [answers, setAnswers] = React.useState(Array(qna.length).fill(null));
+  const [answeredQuestions, setAnsweredQuestions] = React.useState(
+    Array(qna.length).fill(false)
+  );
 
   const handleChange = (event, value) => {
     setCurrentQuestion(value - 1);
-    setSelectedAnswer("");
-    setIsAnswered(false);
+    setSelectedAnswer(answers[value - 1] || "");
   };
 
   const handleClick = (choice) => {
-    if (!isAnswered) {
+    if (!answeredQuestions[currentQuestion]) {
       setSelectedAnswer(choice);
-      setIsAnswered(true);
-      setAnswerCount((prevCount) => prevCount + 1);
+
+      const newAnswers = [...answers];
+      newAnswers[currentQuestion] = choice;
+      setAnswers(newAnswers);
+
+      const newAnsweredQuestions = [...answeredQuestions];
+      newAnsweredQuestions[currentQuestion] = true;
+      setAnsweredQuestions(newAnsweredQuestions);
+
       if (choice === qna[currentQuestion].answer) {
-        setScore((score) => score + 1);
-      }
-      if (answerCount + 1 === qna.length) {
-        console.log("done");
+        setScore((prevScore) => prevScore + 1);
       }
     }
   };
+
   React.useEffect(() => {
-    setSelectedAnswer("");
-    setIsAnswered(false);
-    console.log(score);
-  }, [currentQuestion]);
+    setSelectedAnswer(answers[currentQuestion] || "");
+  }, [currentQuestion, answers]);
+
+  const getButtonSx = (choice) => {
+    if (!answeredQuestions[currentQuestion]) return;
+    if (choice === qna[currentQuestion].answer) {
+      return {
+        backgroundColor: "green",
+        color: "white",
+        "&:disabled": { backgroundColor: "green", color: "white" },
+      };
+    }
+    if (choice === selectedAnswer) {
+      return {
+        backgroundColor: "red",
+        color: "white",
+        "&:disabled": { backgroundColor: "red", color: "white" },
+      };
+    }
+    return;
+  };
+
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <Paper
@@ -63,17 +87,14 @@ export default function MCQQuestion() {
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography>Term</Typography>
-          <Typography>Current Score: {score}</Typography>
-          <Typography>
-            {currentQuestion + 1} of {qna.length}
-          </Typography>
+          <Typography>Question {currentQuestion + 1}</Typography>
+          <Typography>Score: {score}</Typography>
         </Box>
         <Box sx={{ pt: "1rem" }}>
           <Typography>{qna[currentQuestion].title}</Typography>
         </Box>
         <Box sx={{ pt: "3rem" }}>
-          <Typography>Choose matching definition</Typography>
+          <Typography>Choose the correct answer:</Typography>
           <Box
             sx={{
               display: "grid",
@@ -84,27 +105,15 @@ export default function MCQQuestion() {
           >
             {qna[currentQuestion].choices.map((choice, index) => (
               <Button
-                xs={6}
                 key={index}
-                value={choice}
                 onClick={() => handleClick(choice)}
-                color={
-                  !isAnswered
-                    ? "primary"
-                    : choice === qna[currentQuestion].answer
-                    ? "success"
-                    : choice === selectedAnswer
-                    ? "error"
-                    : "primary"
-                }
+                disabled={answeredQuestions[currentQuestion]}
+                sx={getButtonSx(choice)}
               >
                 {choice}
               </Button>
             ))}
           </Box>
-        </Box>
-        <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Button>Don't know?</Button>
         </Box>
       </Paper>
       <Stack spacing={2}>
