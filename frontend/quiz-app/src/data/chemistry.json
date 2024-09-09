@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "title": "What is the smallest particle of an element that can exist?",
+    "answer": "Atom",
+    "choices": ["Atom", "Molecule", "Electron", "Proton", "Neutron"],
+    "hint": null
+  },
+  {
+    "id": 2,
+    "title": "What is the chemical symbol for sodium?",
+    "answer": "Na",
+    "choices": ["Na", "S", "So", "N", "Sa"],
+    "hint": null
+  },
+  {
+    "id": 3,
+    "title": "What is formed when an acid reacts with a base?",
+    "answer": "Salt and water",
+    "choices": [
+      "Salt and water",
+      "Oxygen and hydrogen",
+      "Carbon dioxide and water",
+      "Metal and oxygen",
+      "Nitrogen and hydrogen"
+    ],
+    "hint": null
+  },
+  {
+    "id": 4,
+    "title": "What gas is produced when metal reacts with acid?",
+    "answer": "Hydrogen",
+    "choices": ["Hydrogen", "Oxygen", "Carbon dioxide", "Nitrogen", "Chlorine"],
+    "hint": null
+  },
+  {
+    "id": 5,
+    "title": "What is the pH of a neutral solution?",
+    "answer": "7",
+    "choices": ["7", "0", "1", "14", "10"],
+    "hint": null
+  },
+  {
+    "id": 6,
+    "title": "What is the name given to a mixture of two or more metals?",
+    "answer": "Alloy",
+    "choices": ["Alloy", "Solution", "Compound", "Element", "Molecule"],
+    "hint": null
+  },
+  {
+    "id": 7,
+    "title": "What is the charge of an electron?",
+    "answer": "Negative",
+    "choices": ["Negative", "Positive", "Neutral", "Variable", "No charge"],
+    "hint": null
+  },
+  {
+    "id": 8,
+    "title": "Which of the following is a chemical change?",
+    "answer": "Rusting of iron",
+    "choices": [
+      "Rusting of iron",
+      "Melting of ice",
+      "Boiling of water",
+      "Breaking of glass",
+      "Cutting of paper"
+    ],
+    "hint": null
+  },
+  {
+    "id": 9,
+    "title": "What is the main gas found in the Earth's atmosphere?",
+    "answer": "Nitrogen",
+    "choices": ["Nitrogen", "Oxygen", "Carbon dioxide", "Argon", "Hydrogen"],
+    "hint": null
+  },
+  {
+    "id": 10,
+    "title": "What is the process by which plants make their food using sunlight?",
+    "answer": "Photosynthesis",
+    "choices": [
+      "Photosynthesis",
+      "Respiration",
+      "Transpiration",
+      "Fermentation",
+      "Digestion"
+    ],
+    "hint": null
+  },
+  {
+    "id": 11,
+    "title": "What is the most abundant element in the universe?",
+    "answer": "Hydrogen",
+    "choices": ["Hydrogen", "Oxygen", "Carbon", "Helium", "Nitrogen"],
+    "hint": null
+  },
+  {
+    "id": 12,
+    "title": "What is the chemical formula for water?",
+    "answer": "H2O",
+    "choices": ["H2O", "CO2", "O2", "H2", "NaCl"],
+    "hint": null
+  }
+]
