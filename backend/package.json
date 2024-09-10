@@ -2,11 +2,11 @@
   "name": "bloglist",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "ts-node src/index.ts",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
-    "dev": "cross-env NODE_ENV=development nodemon index.js"
+    "dev": "cross-env NODE_ENV=development nodemon --watch './**/*.ts' --exec 'ts-node' index.ts"
   },
   "author": "",
   "license": "ISC",

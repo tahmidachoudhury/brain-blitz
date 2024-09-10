@@ -4,6 +4,10 @@ import { styled } from "@mui/system"
 import qna from "../../data/chemistry"
 import Pagination from "@mui/material/Pagination"
 import Stack from "@mui/material/Stack"
+import { io, Socket } from "socket.io-client"
+const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
+  "http://localhost:3001"
+)
 
 const Item = styled(Button)({
   height: 60,
