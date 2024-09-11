@@ -4,7 +4,7 @@ import React from "react"
 export default function ChooseGameSection() {
   return (
     <Box display="flex" justifyContent="center">
-      <Box item border="1px solid" xs={7} p={4} borderRadius="2.5%">
+      <Box border="1px solid" xs={7} p={4} borderRadius="2.5%">
         <Typography variant="h3" gutterBottom sx={{ fontSize: "3rem" }}>
           Guest
         </Typography>
@@ -19,7 +19,8 @@ export default function ChooseGameSection() {
           <Box item xs={6} textAlign="center">
             <img
               src="https://picsum.photos/200"
-              style={{ borderRadius: "1000px" }}
+              //src="White_Belt_from_a_Player_Card.png" club penguin
+              style={{ borderRadius: "3rem", height: "200px", width: "200px" }}
             />
           </Box>
 
