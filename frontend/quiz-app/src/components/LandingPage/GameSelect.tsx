@@ -1,7 +1,15 @@
 import { Box, Button, TextField, Typography } from "@mui/material"
 import React from "react"
+import { io, Socket } from "socket.io-client"
+const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
+  "http://localhost:3001"
+)
 
 export default function ChooseGameSection() {
+  function createGame() {
+    socket.emit("createGame")
+  }
+
   return (
     <Box display="flex" justifyContent="center">
       <Box border="1px solid" xs={7} p={4} borderRadius="2.5%">
@@ -16,7 +24,7 @@ export default function ChooseGameSection() {
             gap: 6,
           }}
         >
-          <Box item xs={6} textAlign="center">
+          <Box xs={6} textAlign="center">
             <img
               src="https://picsum.photos/200"
               //src="White_Belt_from_a_Player_Card.png" club penguin
@@ -24,20 +32,21 @@ export default function ChooseGameSection() {
             />
           </Box>
 
-          <Box item xs={6}>
-            <Typography variant="h4" style={{ fontSize: "2rem" }}>
+          <Box xs={6}>
+            <Typography variant="h4" my={3} style={{ fontSize: "2rem" }}>
               Choose a nickname
             </Typography>
             <TextField
               id="outlined-basic"
-              label="Outlined"
+              label="nickname"
               variant="outlined"
               fullWidth
             />
           </Box>
         </Box>
-        <Box textAlign="center">
-          <Button>Start</Button>
+        <Box display="flex" justifyContent="space-evenly" mt={3}>
+          <Button onClick={createGame}>Create a game</Button>
+          <Button href="join">Join a game</Button>
         </Box>
       </Box>
     </Box>
