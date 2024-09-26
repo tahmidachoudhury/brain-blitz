@@ -4,14 +4,14 @@ const config = require("../utils/config") //abdinasir code
 import { Server } from "socket.io"
 const cors = require("cors")
 
-interface ServerToClientEvents {
+export interface ServerToClientEvents {
   noArg: () => void
   basicEmit: (a: number, b: string, c: Buffer) => void
   withAck: (d: string, callback: (e: number) => void) => void
   newGame: (roomUniqueId: string) => void
 }
 
-interface ClientToServerEvents {
+export interface ClientToServerEvents {
   hello: () => void
   joinGame: (data: JoinGameData) => void
   createGame: () => void
@@ -26,7 +26,7 @@ interface Rooms {
 
 const rooms: Rooms = {}
 
-interface JoinGameData {
+export interface JoinGameData {
   roomUniqueId: string
 }
 
