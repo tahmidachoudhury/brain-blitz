@@ -11,9 +11,15 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
 
 export default function Join() {
   const [roomUniqueId, setRoomUniqueId] = useState("")
+  const [nickname, setNickname] = useState("")
 
   function handleJoinGame() {
     socket.emit("joinGame", { roomUniqueId: roomUniqueId })
+    socket.emit("setNickname", { nickname })
+  }
+
+  const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNickname(e.target.value)
   }
 
   return (
@@ -28,6 +34,14 @@ export default function Join() {
           <Typography>Brain Blitz!</Typography>
         </Box>
         <Box display="flex" flexDirection="column">
+          <TextField
+            id="usertag"
+            label="Nickname"
+            variant="outlined"
+            fullWidth
+            value={nickname}
+            onChange={handleTextFieldChange}
+          />
           <TextField
             id="roomuniqueid"
             label="Game PIN"

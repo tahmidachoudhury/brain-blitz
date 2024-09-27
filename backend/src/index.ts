@@ -9,12 +9,14 @@ export interface ServerToClientEvents {
   basicEmit: (a: number, b: string, c: Buffer) => void
   withAck: (d: string, callback: (e: number) => void) => void
   newGame: (roomUniqueId: string) => void
+  updateUsers: (users: { id: string; nickname: string }[]) => void
 }
 
 export interface ClientToServerEvents {
   hello: () => void
   joinGame: (data: JoinGameData) => void
   createGame: () => void
+  setNickname: (data: { nickname: string }) => void
 }
 
 interface InterServerEvents {
@@ -25,6 +27,8 @@ interface Rooms {
 }
 
 const rooms: Rooms = {}
+
+const users: { id: string; nickname: string }[] = []
 
 export interface JoinGameData {
   roomUniqueId: string
@@ -50,8 +54,11 @@ const io = new Server<
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`)
-  socket.on("disconnect", () => {
-    console.log("user disconnected")
+
+  socket.on("setNickname", (data: { nickname: string }) => {
+    console.log("users")
+    users.push({ id: socket.id, nickname: data.nickname })
+    io.emit("updateUsers", users)
   })
 
   socket.on("createGame", () => {
@@ -72,11 +79,26 @@ io.on("connection", (socket) => {
       console.log(`Room ${data.roomUniqueId} does not exist`)
     }
   })
+
+  socket.on("disconnect", () => {
+    // Remove user when they disconnect
+    const index = users.findIndex((user) => user.id === socket.id)
+    if (index !== -1) {
+      users.splice(index, 1)
+      io.emit("updateUsers", users) // Broadcast updated users list
+    }
+    console.log(`User disconnected: ${socket.id}`)
+  })
 })
 
 server.listen(3001, () => {
   console.log("SERVER IS RUNNING")
 })
+
+//
+//
+//
+//
 
 function makeid(length: number) {
   let result = ""

@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material"
-import React, { useState } from "react"
+import React, { ReactHTMLElement, useEffect, useState } from "react"
 import { io, Socket } from "socket.io-client"
 import {
   ServerToClientEvents,
@@ -10,6 +10,8 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
 )
 
 export default function ChooseGameSection() {
+  const [nickname, setNickname] = useState("")
+  const [users, setUsers] = useState<{ id: string; nickname: string }[]>([])
   const [initial, setInitial] = useState("block")
   const [gamePlay, setGamePlay] = useState("none")
   const [roomUniqueId, setRoomUniqueId] = useState("")
@@ -20,9 +22,23 @@ export default function ChooseGameSection() {
     setGamePlay("block")
   })
 
-  function createGame() {
+  const createGame = () => {
     socket.emit("createGame")
+    socket.emit("setNickname", { nickname })
   }
+
+  const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNickname(e.target.value)
+  }
+
+  useEffect(() => {
+    socket.on("updateUsers", (users) => {
+      setUsers(users)
+    })
+    return () => {
+      socket.off("updateUsers")
+    }
+  }, [])
 
   return (
     <Box display="flex" justifyContent="center">
@@ -59,10 +75,12 @@ export default function ChooseGameSection() {
               Choose a nickname
             </Typography>
             <TextField
-              id="outlined-basic"
-              label="nickname"
+              id="usertag"
+              label="Nickname"
               variant="outlined"
               fullWidth
+              value={nickname}
+              onChange={handleTextFieldChange}
             />
           </Box>
         </Box>
@@ -76,6 +94,11 @@ export default function ChooseGameSection() {
           <Typography>
             Waiting for opponent, please share code {roomUniqueId} to join
           </Typography>
+          <ul>
+            {users.map((user) => (
+              <li key={user.id}>{user.nickname}</li>
+            ))}
+          </ul>
         </Box>
         <Box id="gameArea"></Box>
         <Box id="winnerArea"></Box>
