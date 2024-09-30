@@ -9,13 +9,14 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   "http://localhost:3001"
 )
 
-export default function Join() {
+export default function Join(props: { display: string; hideJoin: () => void }) {
   const [roomUniqueId, setRoomUniqueId] = useState("")
   const [nickname, setNickname] = useState("")
 
   function handleJoinGame() {
     socket.emit("joinGame", { roomUniqueId: roomUniqueId })
     socket.emit("setNickname", { nickname })
+    props.hideJoin()
   }
 
   const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +25,7 @@ export default function Join() {
 
   return (
     <Box
-      display="flex"
+      display={props.display}
       justifyContent="center"
       alignItems="center"
       height="100vh"

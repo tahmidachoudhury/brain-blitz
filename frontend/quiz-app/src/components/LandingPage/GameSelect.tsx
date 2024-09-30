@@ -5,6 +5,7 @@ import {
   ServerToClientEvents,
   ClientToServerEvents,
 } from "../../../../../backend/src/index"
+import Join from "../JoinGamePage/join"
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   "http://localhost:3001"
 )
@@ -14,17 +15,35 @@ export default function ChooseGameSection() {
   const [users, setUsers] = useState<{ id: string; nickname: string }[]>([])
   const [initial, setInitial] = useState("block")
   const [gamePlay, setGamePlay] = useState("none")
+  const [lobby, setLobby] = useState("none")
+  const [display, setDisplay] = useState("none")
   const [roomUniqueId, setRoomUniqueId] = useState("")
   socket.on("newGame", (uniqueId) => {
     setRoomUniqueId(uniqueId)
-    console.log("New game created with ID:", roomUniqueId)
+    console.log(`New game created with ID: ${uniqueId}`)
     setInitial("none")
     setGamePlay("block")
+    setLobby("block")
+  })
+
+  socket.on("hello", (data) => {
+    setRoomUniqueId(data)
   })
 
   const createGame = () => {
     socket.emit("createGame")
     socket.emit("setNickname", { nickname })
+  }
+
+  const handleJoinGameButton = () => {
+    setDisplay("flex")
+    setInitial("none")
+    setGamePlay("block")
+  }
+
+  const hideJoinComponent = () => {
+    setDisplay("none")
+    setLobby("block")
   }
 
   const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,17 +105,18 @@ export default function ChooseGameSection() {
         </Box>
         <Box display="flex" justifyContent="space-evenly" mt={3}>
           <Button onClick={createGame}>Create a game</Button>
-          <Button href="join">Join a game</Button>
+          <Button onClick={handleJoinGameButton}>Join a game</Button>
         </Box>
       </Box>
       <Box id="gameplay" sx={{ display: gamePlay }}>
-        <Box id="waitingArea">
+        <Join display={display} hideJoin={hideJoinComponent} />
+        <Box id="waitingArea" sx={{ display: lobby }}>
           <Typography>
             Waiting for opponent, please share code {roomUniqueId} to join
           </Typography>
           <ul>
-            {users.map((user) => (
-              <li key={user.id}>{user.nickname}</li>
+            {users.map((user, index) => (
+              <li key={index}>{user.nickname}</li>
             ))}
           </ul>
         </Box>

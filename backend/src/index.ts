@@ -10,6 +10,7 @@ export interface ServerToClientEvents {
   withAck: (d: string, callback: (e: number) => void) => void
   newGame: (roomUniqueId: string) => void
   updateUsers: (users: { id: string; nickname: string }[]) => void
+  hello: (message: string) => void
 }
 
 export interface ClientToServerEvents {
@@ -75,6 +76,7 @@ io.on("connection", (socket) => {
       socket.join(data.roomUniqueId)
       // socket.to(data.roomUniqueId).emit("playersConnected", {})
       // socket.emit("playersConnected")
+      io.emit("hello", data.roomUniqueId)
     } else {
       console.log(`Room ${data.roomUniqueId} does not exist`)
     }

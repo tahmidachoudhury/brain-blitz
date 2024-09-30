@@ -23,7 +23,7 @@ export default function GamePage() {
   let roomUniqueId = null
   socket.on("newGame", (uniqueId) => {
     roomUniqueId = uniqueId
-    console.log("New game created with ID:", roomUniqueId)
+    console.log(`New game created with ID:, ${roomUniqueId}`)
     setInitial("block")
   })
 
