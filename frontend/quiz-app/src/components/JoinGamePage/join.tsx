@@ -12,11 +12,17 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
 export default function Join(props: { display: string; hideJoin: () => void }) {
   const [roomUniqueId, setRoomUniqueId] = useState("")
   const [nickname, setNickname] = useState("")
+  const [incomplete, setIncomplete] = useState(false)
 
   function handleJoinGame() {
     socket.emit("joinGame", { roomUniqueId: roomUniqueId })
     socket.emit("setNickname", { nickname })
-    props.hideJoin()
+    socket.on("hello", () => {
+      setIncomplete(true)
+    })
+    if (incomplete) {
+      props.hideJoin()
+    }
   }
 
   const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +52,7 @@ export default function Join(props: { display: string; hideJoin: () => void }) {
           <TextField
             id="roomuniqueid"
             label="Game PIN"
+            error={incomplete}
             value={roomUniqueId}
             onChange={(e) => setRoomUniqueId(e.target.value)}
           ></TextField>

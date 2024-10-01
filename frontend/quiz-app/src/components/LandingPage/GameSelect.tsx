@@ -15,6 +15,7 @@ export default function ChooseGameSection() {
   const [users, setUsers] = useState<{ id: string; nickname: string }[]>([])
   const [initial, setInitial] = useState("block")
   const [gamePlay, setGamePlay] = useState("none")
+  const [incomplete, setIncomplete] = useState(false)
   const [lobby, setLobby] = useState("none")
   const [display, setDisplay] = useState("none")
   const [roomUniqueId, setRoomUniqueId] = useState("")
@@ -31,8 +32,12 @@ export default function ChooseGameSection() {
   })
 
   const createGame = () => {
-    socket.emit("createGame")
-    socket.emit("setNickname", { nickname })
+    if (nickname.length >= 3) {
+      socket.emit("createGame")
+      socket.emit("setNickname", { nickname })
+    } else {
+      setIncomplete(true)
+    }
   }
 
   const handleJoinGameButton = () => {
@@ -94,6 +99,7 @@ export default function ChooseGameSection() {
               Choose a nickname
             </Typography>
             <TextField
+              error={incomplete}
               id="usertag"
               label="Nickname"
               variant="outlined"

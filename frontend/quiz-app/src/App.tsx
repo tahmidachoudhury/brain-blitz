@@ -12,7 +12,7 @@ function App() {
       <ResponsiveAppBar />
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route path="join" element={<Join />} />
+        {/* <Route path="join" element={<Join />} /> */}
         <Route path="/game" element={<GamePage />} />
         <Route path="/q" element={<MCQQuestion />} />
       </Routes>

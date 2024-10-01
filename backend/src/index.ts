@@ -55,6 +55,7 @@ const io = new Server<
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`)
+  console.log(rooms)
 
   socket.on("setNickname", (data: { nickname: string }) => {
     console.log("users")
@@ -79,6 +80,7 @@ io.on("connection", (socket) => {
       io.emit("hello", data.roomUniqueId)
     } else {
       console.log(`Room ${data.roomUniqueId} does not exist`)
+      socket.emit("hello", "room is wrong")
     }
   })
 
