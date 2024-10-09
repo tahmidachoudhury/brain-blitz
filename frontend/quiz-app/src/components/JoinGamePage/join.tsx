@@ -9,10 +9,15 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   "http://localhost:3001"
 )
 
-export default function Join(props: { display: string; hideJoin: () => void }) {
+type JoinProps = {
+  joinAction: () => void
+}
+
+export default function Join(props: JoinProps) {
   const [roomUniqueId, setRoomUniqueId] = useState("")
   const [nickname, setNickname] = useState("")
   const [incomplete, setIncomplete] = useState(false)
+  const { joinAction } = props
 
   function handleJoinGame() {
     socket.emit("joinGame", { roomUniqueId: roomUniqueId })
@@ -20,9 +25,9 @@ export default function Join(props: { display: string; hideJoin: () => void }) {
     socket.on("hello", () => {
       setIncomplete(true)
     })
-    if (incomplete) {
-      props.hideJoin()
-    }
+    // if (incomplete) {
+    //   hideJoin
+    // }
   }
 
   const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,12 +35,7 @@ export default function Join(props: { display: string; hideJoin: () => void }) {
   }
 
   return (
-    <Box
-      display={props.display}
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-    >
+    <Box justifyContent="center" alignItems="center" height="100vh">
       <Box display="flex" alignItems="center" flexDirection="column">
         <Box>
           <Typography>Brain Blitz!</Typography>
@@ -56,7 +56,7 @@ export default function Join(props: { display: string; hideJoin: () => void }) {
             value={roomUniqueId}
             onChange={(e) => setRoomUniqueId(e.target.value)}
           ></TextField>
-          <Button onClick={handleJoinGame}>Enter</Button>
+          <Button onClick={joinAction}>Enter</Button>
         </Box>
       </Box>
     </Box>
