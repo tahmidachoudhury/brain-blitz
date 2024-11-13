@@ -58,9 +58,9 @@ io.on("connection", (socket) => {
   console.log(rooms)
 
   socket.on("setNickname", (data: { nickname: string }) => {
-    console.log("users")
     users.push({ id: socket.id, nickname: data.nickname })
     io.emit("updateUsers", users)
+    console.log("users", users)
   })
 
   socket.on("createGame", () => {

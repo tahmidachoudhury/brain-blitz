@@ -6,6 +6,7 @@ import {
   ClientToServerEvents,
 } from "../../../../../backend/src/index"
 import Join from "../JoinGamePage/join"
+import MCQQuestion from "../QuestionFormat/Questions"
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   "http://localhost:3001"
 )
@@ -121,12 +122,20 @@ export default function ChooseGameSection() {
                 <li key={index}>{user.nickname}</li>
               ))}
             </ul>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => setCurrentStep(3)}
+            >
+              Start Quiz
+            </Button>
           </Box>
           <Box id="gameArea"></Box>
           <Box id="winnerArea"></Box>
         </Box>
       )}
       {currentStep === 2 && <Join joinAction={() => setCurrentStep(1)} />}
+      {currentStep === 3 && <MCQQuestion />}
     </Box>
   )
 }
