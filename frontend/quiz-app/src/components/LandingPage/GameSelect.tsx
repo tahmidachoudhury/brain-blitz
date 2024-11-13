@@ -10,23 +10,21 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
   "http://localhost:3001"
 )
 
+type User = {
+  id: string
+  nickname: string
+}[]
+
 export default function ChooseGameSection() {
   const [nickname, setNickname] = useState("")
-  const [users, setUsers] = useState<{ id: string; nickname: string }[]>([])
+  const [users, setUsers] = useState<User>([])
   const [incomplete, setIncomplete] = useState(false)
   const [roomUniqueId, setRoomUniqueId] = useState("")
   const [currentStep, setCurrentStep] = useState(0)
-  // const [isNewGameCreated, setIsNewGameCreated] = useState(false)
-  // const [initial, setInitial] = useState(true)
-  // const [gamePlay, setGamePlay] = useState(false)
-  // const [lobby, setLobby] = useState(false)
-  // const [display, setDisplay] = useState(false)
+
   socket.on("newGame", (uniqueId) => {
     setRoomUniqueId(uniqueId)
     console.log(`New game created with ID: ${uniqueId}`)
-    // setInitial(false)
-    // setGamePlay(true)
-    // setLobby(true)
   })
 
   socket.on("hello", (data) => {
@@ -38,19 +36,10 @@ export default function ChooseGameSection() {
       socket.emit("createGame")
       socket.emit("setNickname", { nickname })
       setCurrentStep(1)
-      // setIsNewGameCreated(true)
     } else {
       setIncomplete(true)
     }
   }
-
-  const handleJoinGameButton = () => {
-    //setDisplay(true)
-    // setInitial(false)
-    // setGamePlay(true)
-  }
-
-  const hideJoinComponent = () => {}
 
   const handleTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value)
@@ -59,6 +48,7 @@ export default function ChooseGameSection() {
   useEffect(() => {
     socket.on("updateUsers", (users) => {
       setUsers(users)
+      console.log(users)
     })
     return () => {
       socket.off("updateUsers")
@@ -115,14 +105,13 @@ export default function ChooseGameSection() {
             </Box>
           </Box>
           <Box display="flex" justifyContent="space-evenly" mt={3}>
-            <Button onClick={() => setCurrentStep(1)}>Create a game</Button>
+            <Button onClick={createGame}>Create a game</Button>
             <Button onClick={() => setCurrentStep(2)}>Join a game</Button>
           </Box>
         </Box>
       )}
       {currentStep === 1 && (
         <Box id="gameplay">
-          {/* <Join joinAction={() => setCurrentStep(2)} /> */}
           <Box id="waitingArea">
             <Typography>
               Waiting for opponent, please share code {roomUniqueId} to join

@@ -22,9 +22,15 @@ export default function Join(props: JoinProps) {
   function handleJoinGame() {
     socket.emit("joinGame", { roomUniqueId: roomUniqueId })
     socket.emit("setNickname", { nickname })
+
+    //acknowledgement from server
     socket.on("hello", () => {
       setIncomplete(true)
+      joinAction()
     })
+    // socket.on("hello", () => {
+    //   setIncomplete(true)
+    // })
     // if (incomplete) {
     //   hideJoin
     // }
@@ -56,7 +62,7 @@ export default function Join(props: JoinProps) {
             value={roomUniqueId}
             onChange={(e) => setRoomUniqueId(e.target.value)}
           ></TextField>
-          <Button onClick={joinAction}>Enter</Button>
+          <Button onClick={handleJoinGame}>Enter</Button>
         </Box>
       </Box>
     </Box>
